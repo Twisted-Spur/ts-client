@@ -1,22 +1,40 @@
 import axios from 'axios';
 import {useQuery} from "react-query";
+import {CategoryDTO} from "../dtos/CategoryDTO.ts";
+import { Link } from 'react-router-dom';
 
 const fetchCategories = async () => {
     const response = await axios.get('http://localhost:8080/inventoryService/categories');
-    console.log("yo, here you are " + response.data);
     return response.data;
 }
 
 export default function NavBar() {
-    const { data } = useQuery('categories', fetchCategories);
+    const { data, error, isLoading, isError } = useQuery('categories', fetchCategories);
+
+    if (isLoading) {
+        return <span>Loading...</span>;
+    }
+
+    if (isError) {
+        return <span>Error: {(error as Error).message}</span>;
+    }
+
+    if (!data) {
+        return null; // or handle the case where data is undefined
+    }
 
     return (
         <nav className="bg-amber-700 text-white py-2">
             <div className="container mx-auto flex justify-between items-center">
                 <div className="flex space-x-4">
                     <ul className="flex items-center space-x-2">
-                        {data.categories.map((category) => (
-                            <li key={category.category} />
+                        {
+                            data.map((categoryDto: CategoryDTO) => (
+                            <li key={categoryDto.category}>
+                                <Link to={`/category/${categoryDto.category.replace(/\s+/g, '-').toLowerCase()}`}>
+                                    {categoryDto.category}
+                                </Link>
+                            </li>
                         ))}
                     </ul>
                     {/*<Link to="/shop" className="hover:text-gray-400">Custom Shirts</Link>*/}

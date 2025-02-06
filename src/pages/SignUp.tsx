@@ -1,5 +1,5 @@
 
-export default function SignIn() {
+export default function SignUp() {
     return (
         <section className="min-h-screen flex
         items-center justify-center font-mono
@@ -41,7 +41,7 @@ export default function SignIn() {
                     text-white">Login</button>
 
                     <p className="font-semibold">Don't have an
-                        account? <a href="/sign-up" className="
+                        account? <a href="#" className="
                         text-blue-400 hover:underline">
                             Sign Up</a></p>
                 </div>

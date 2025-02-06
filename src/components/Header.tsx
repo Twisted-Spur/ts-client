@@ -14,10 +14,10 @@ export default function Header() {
                             <Link to="/" className="hover:text-gray-400">Home</Link>
                         </li>
                         <li>
-                            <Link to="/aboutUs" className="hover:text-gray-400">About Us</Link>
+                            <Link to="/about-us" className="hover:text-gray-400">About Us</Link>
                         </li>
                         <li>
-                            <Link to="/contactUs" className="hover:text-gray-400">Contact Us</Link>
+                            <Link to="/contact-us" className="hover:text-gray-400">Contact Us</Link>
                         </li>
                         <li>
                             <Link to="/sign-in" className="hover:text-gray-400">Sign In</Link>
