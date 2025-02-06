@@ -10,7 +10,7 @@ export default function SignIn() {
                 justify-center text-center p-20 gap-8
                 bg-white rounded-2xl
                 xl:rounded-tr-none xl:rounded-br-none">
-                    <h1 className="text-5xl font-bold">Sign-In</h1>
+                    <h1 className="text-5xl font-bold">Sign In</h1>
 
                     <div className="flex flex-col text-2xl
                     text-left gap-1">
