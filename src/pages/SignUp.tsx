@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { UserDTO } from "../dtos/UserDTO.ts";
+import { UserDto } from "../dtos/UserDto.ts";
 import userService from "../services/UserService.tsx";
 import {useNavigate} from "react-router-dom";
 
@@ -18,7 +18,7 @@ export default function SignUp() {
         <form
             onSubmit={handleSubmit(async (data) => {
                 console.log(data);
-                const userDTO: UserDTO = {} as UserDTO;
+                const userDTO: UserDto = {} as UserDto;
                 userDTO.firstName = data.firstName;
                 userDTO.lastName = data.lastName;
                 userDTO.birthday = data.birthday;

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 export default function Header() {
     return (
-        <header className="bg-gray-800 text-white p-2">
+        <header className="bg-pink-600 text-white p-2">
             <div className="container mx-auto flex justify-between items-center">
                 <div className="flex items-center">
                     <img src="/twisted-spur-logo.png" alt="N/A" className="h-8 w-8 mr-2" />

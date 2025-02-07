@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {useQuery} from "react-query";
-import {CategoryDTO} from "../dtos/CategoryDTO.ts";
+import {CategoryDto} from "../dtos/CategoryDto.ts";
 import { Link } from 'react-router-dom';
 import inventoryApiConfig from "../configs/inventoryApiConfig.ts";
 
@@ -25,12 +25,12 @@ export default function NavBar() {
     }
 
     return (
-        <nav className="bg-amber-700 text-white py-2">
+        <nav className="bg-teal-500 text-white py-2">
             <div className="container mx-auto flex justify-between items-center">
                 <div className="flex space-x-4">
                     <ul className="flex items-center space-x-2">
                         {
-                            data.map((categoryDto: CategoryDTO) => (
+                            data.map((categoryDto: CategoryDto) => (
                             <li key={categoryDto.category}>
                                 <Link to={`/category/${categoryDto.category.replace(/\s+/g, '-').toLowerCase()}`}>
                                     {categoryDto.category}
