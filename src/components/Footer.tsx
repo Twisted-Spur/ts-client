@@ -1,12 +1,16 @@
 export default function Footer(){
     return (
-        <footer className="bg-gray-600 text-white py-6">
+        <footer className="bg-pink-600 text-white py-6">
 
             <div className="container mx-auto flex justify-between items-center">
                 {/* Social Media Links */}
                 <div className="flex space-x-4">
-                    <a href="https://facebook.com" className="hover:text-gray-400">Facebook</a>
-                    <a href="https://instagram.com" className="hover:text-gray-400">Instagram</a>
+                    <a href="https://www.facebook.com/carol.beasleyfletcher.3" target="_blank" className="hover:text-gray-400">
+                        <img src="/facebook.png" alt="Facebook" className="h-8" />
+                    </a>
+                    <a href="https://www.instagram.com/twistedspur.boutique/" target="_blank" className="hover:text-gray-400">
+                        <img src="/instagram.png" alt="Instagram" className="h-8" />
+                    </a>
                 </div>
 
                 {/* Accepted Payment Methods */}
@@ -38,6 +42,8 @@ export default function Footer(){
                 <div className="flex items-center">
                     <label className="text-sm font-semibold">Powered by:&nbsp;&nbsp;</label>
                     <img src="/vite.svg" alt="Vite" className="h-8" title="Vite" />
+                    <img src="/react.svg" alt="React" className="h-8" title="Vite" />
+                    <img src="/tailwind-css.png" alt="Tailwind" className="h-8" title="Vite" />
                 </div>
             </div>
         </footer>
