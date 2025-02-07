@@ -31,7 +31,7 @@ export default function ContactUs() {
 
     return (
         <div className="container mx-auto p-4">
-            <h1 className="text-2xl font-bold mb-4">Contact Us</h1>
+            <h1 className="text-4xl font-bold text-center text-gray-800 mb-8">Contact Us</h1>
             <form onSubmit={handleSubmit} className="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md">
                 <div className="mb-4">
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
