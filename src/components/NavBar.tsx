@@ -2,9 +2,10 @@ import axios from 'axios';
 import {useQuery} from "react-query";
 import {CategoryDTO} from "../dtos/CategoryDTO.ts";
 import { Link } from 'react-router-dom';
+import inventoryApiConfig from "../configs/inventoryApiConfig.ts";
 
 const fetchCategories = async () => {
-    const response = await axios.get('http://localhost:8080/inventoryService/categories');
+    const response = await axios.get(inventoryApiConfig.baseUrl + inventoryApiConfig.endpoints.categories);
     return response.data;
 }
 

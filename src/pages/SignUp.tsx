@@ -1,5 +1,7 @@
-
 import { useForm } from "react-hook-form";
+import { UserDTO } from "../dtos/UserDTO.ts";
+import userService from "../services/UserService.tsx";
+import {useNavigate} from "react-router-dom";
 
 export default function SignUp() {
     const {
@@ -8,12 +10,29 @@ export default function SignUp() {
         formState: { errors }
     } = useForm();
 
-    console.log(errors);
+    const navigate = useNavigate();
+
+    console.error(errors);
 
     return (
         <form
-            onSubmit={handleSubmit((data) => {
+            onSubmit={handleSubmit(async (data) => {
                 console.log(data);
+                const userDTO: UserDTO = {} as UserDTO;
+                userDTO.firstName = data.firstName;
+                userDTO.lastName = data.lastName;
+                userDTO.birthday = data.birthday;
+                userDTO.phoneNumber = data.phoneNumber;
+                userDTO.email = data.email;
+                userDTO.passwd = data.password;
+                userDTO.isAdmin = false;
+
+                try {
+                    await userService.signup(userDTO);
+                    navigate("/");
+                } catch (err) {
+                    alert("Signup failed. Please try again.");
+                }
             })}
             className="min-h-screen flex
             items-center justify-center font-mono
@@ -37,7 +56,7 @@ export default function SignUp() {
                                    required: "*This is required",
                                    minLength: {
                                        value: 1,
-                                       message: "Field was left empty."
+                                       message: "*This is required"
                                    }
                                })}
                                className="rounded-md
@@ -58,7 +77,7 @@ export default function SignUp() {
                                    required: "*This is required",
                                    minLength: {
                                        value: 1,
-                                       message: "Field was left empty."
+                                       message: "*This is required"
                                    }
                                })}
                                className="rounded-md
@@ -76,11 +95,12 @@ export default function SignUp() {
                         <span>Birthday</span>
 
                         <input type="text"
+                               placeholder="YYYY-MM-DD"
                                {...register("birthday", {
-                                   required: "*This is required",
-                                   minLength: {
-                                       value: 1,
-                                       message: "Field was left empty."
+                                   required: "*Invalid date or does not match the format YYYY-MM-DD",
+                                   pattern: {
+                                       value: /^(19|20)\d\d-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/,
+                                       message: "*Invalid date or does not match the format YYYY-MM-DD"
                                    }
                                })}
                                className="rounded-md
@@ -88,7 +108,7 @@ export default function SignUp() {
                                focus:border-cyan-400 focus:bg-slate-50"
                         />
 
-                        <p className="text-sm text-red-500">
+                        <p className="text-sm text-red-500 max-w-64">
                             {errors.birthday?.message}</p>
                     </div>
 
@@ -100,7 +120,10 @@ export default function SignUp() {
                         <input type="text"
                                {...register("phoneNumber", {
                                    required: "*Does not match the format XXX-XXX-XXXX",
-                                   pattern: /^\d{3}-\d{3}-\d{4}$/
+                                   pattern: {
+                                       value: /^\d{3}-\d{3}-\d{4}$/,
+                                       message: "*Does not match the format XXX-XXX-XXXX"
+                                   }
                                })}
                                placeholder="xxx-xxx-xxxx"
                                className="rounded-md
@@ -138,7 +161,10 @@ export default function SignUp() {
                         <input type="password"
                                {...register("password", {
                                    required: "*Does not meet the password criteria.",
-                                   pattern: /^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$/
+                                   pattern: {
+                                       value: /^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/,
+                                       message: "*Does not meet the password criteria."
+                                   }
                                })}
                                className="rounded-md
                                p-1 border-2 outline-none
@@ -148,13 +174,16 @@ export default function SignUp() {
                             {errors.password?.message}</p>
                         <span className="text-sm max-w-64">
                             Must be at least 8 characters and
-                            include at least 1 number and special character.</span>
+                            include at least 1 number and special
+                            character (!@#$%^&*).</span>
                     </div>
 
-                    <button className="px-10 py-2 rounded-md
-                    bg-gradient-to-r bg-blue-500
-                    hover:bg-orange-600
-                    text-white">Submit</button>
+                    <input type="submit"
+                           value="Submit"
+                           className="px-10 py-2 rounded-md
+                           bg-gradient-to-r bg-blue-500
+                           hover:bg-orange-600
+                           text-white" />
                 </div>
             </div>
         </form>

@@ -15,6 +15,8 @@ Currently, two official plugins are available:
 
         assets/: Contains static assets like images, fonts, and global styles (CSS/SCSS). You can further organize it into subdirectories like images/ and styles/.
 
+        dtos/: Contains DTO objects to be communicated with the backend.
+
         components/: Contains reusable UI components. These components are usually small and specific to a part of the UI, such as buttons, form inputs, or custom widgets.
 
         pages/: Contains components that represent entire pages or views of the application. Each page component might use multiple smaller components from the components/ directory.

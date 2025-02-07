@@ -1,4 +1,3 @@
-
 export default function AboutUs(){
     return (
         <div className="bg-gray-100 py-12">
