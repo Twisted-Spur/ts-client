@@ -42,8 +42,8 @@ export default function Footer(){
                 <div className="flex items-center">
                     <label className="text-sm font-semibold">Powered by:&nbsp;&nbsp;</label>
                     <img src="/vite.svg" alt="Vite" className="h-8" title="Vite" />
-                    <img src="/react.svg" alt="React" className="h-8" title="Vite" />
-                    <img src="/tailwind-css.png" alt="Tailwind" className="h-8" title="Vite" />
+                    <img src="/react.svg" alt="React" className="h-8" title="React" />
+                    <img src="/tailwind-css.png" alt="Tailwind CSS" className="h-8" title="Tailwind CSS" />
                 </div>
             </div>
         </footer>
