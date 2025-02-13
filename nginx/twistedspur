@@ -1,0 +1,12 @@
+# Place this file in /etc/nginx/sites-available/
+server {
+    listen 80;
+    server_name twistedspur.centralus.cloudapp.azure.com;
+
+    root /home/ts-dev/client-dist/;
+    index index.html;
+
+    location = / {
+        try_files $uri /index.html;
+    }
+}
