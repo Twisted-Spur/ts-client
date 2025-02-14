@@ -1,7 +1,6 @@
 import userService from "../services/UserService.tsx";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useForm} from "react-hook-form";
-import {UserDto} from "../dtos/UserDto.ts";
 import {SignInDto} from "../dtos/SignInDto.ts";
 
 export default function SignIn() {
@@ -71,9 +70,9 @@ export default function SignIn() {
                     text-white" />
 
                     <p className="font-semibold">Don't have an
-                        account? <a href="/sign-up" className="
-                        text-blue-400 hover:underline">
-                            Sign Up</a></p>
+                        account?
+                        <Link to="/sign-up" className="text-blue-400 hover:underline">
+                            Sign Up</Link></p>
                 </div>
                 <img src={"/twisted-spur-logo.png"} alt="" className='
                 bg-fuchsia-300

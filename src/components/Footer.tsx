@@ -1,6 +1,6 @@
 export default function Footer(){
     return (
-        <footer className="bg-pink-600 text-white py-6">
+        <footer className="bg-gray-700 text-white py-6">
 
             <div className="container mx-auto flex justify-between items-center">
                 {/* Social Media Links */}
