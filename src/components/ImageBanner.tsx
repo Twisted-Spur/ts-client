@@ -8,21 +8,21 @@ const ImageBanner = () => {
     const banners = [
         {
             id: 1,
-            imageUrl: "https://example.com/banner1.jpg",
+            imageUrl: "/products/custom-shirts-banner.jpg",
             title: "Custom Shirts",
             description: "Build your new favorite shirt today!",
             link: "/category/custom-shirts"
         },
         {
             id: 2,
-            imageUrl: "https://example.com/banner2.jpg",
+            imageUrl: "/products/custom-hats-banner.avif",
             title: "Custom Hats",
             description: "Get that hat you always wanted.",
             link: "/category/custom-hats"
         },
         {
             id: 3,
-            imageUrl: "https://example.com/banner3.jpg",
+            imageUrl: "/products/custom-drinkware-banner.jpg",
             title: "Custom Drinkware",
             description: "Flex your favorite saying on every drink!",
             link: "/category/custom-drinkware"
@@ -58,7 +58,7 @@ const ImageBanner = () => {
     };
 
     return (
-        <div className="relative w-full h-[600px] overflow-hidden">
+        <div className="relative w-full max-h-[600px] h-[50vh]">
             {/* Banner Images */}
             {banners.map((banner, index) => (
                 <div
@@ -70,22 +70,27 @@ const ImageBanner = () => {
                     {index === currentIndex && (
                         <div
                             onClick={() => navigate(banner.link)}
-                            className="absolute inset-0 cursor-pointer"
+                            className="relative w-full h-full cursor-pointer group"
                         >
-                            <img
-                                src={banner.imageUrl}
-                                alt={banner.title}
-                                className="w-full h-full object-cover"
-                            />
-                            {/* Banner Content Overlay */}
-                            <div className="absolute inset-0 bg-black bg-opacity-30 hover:bg-opacity-40 transition-all duration-300">
-                                <div className="container mx-auto px-4 h-full flex items-center">
-                                    <div className="text-white">
-                                        <h2 className="text-4xl font-bold mb-4">{banner.title}</h2>
-                                        <p className="text-xl mb-6">{banner.description}</p>
-                                    </div>
-                                </div>
+                            <div className="absolute inset-0 overflow-hidden">
+                                <img
+                                    src={banner.imageUrl}
+                                    alt={banner.title}
+                                    className="w-full h-full object-contain md:object-cover"
+                                    style={{
+                                        maxHeight: '600px',
+                                    }}
+                                />
                             </div>
+                            {/* TODO - decided to keep Banner Content Overlay or not*/}
+                            {/*<div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent hover:from-black/60 hover:via-black/30 transition-all duration-300">*/}
+                            {/*    <div className="container mx-auto px-4 h-full flex items-center">*/}
+                            {/*        <div className="text-white text-shadow">*/}
+                            {/*            <h2 className="text-4xl font-bold mb-4 drop-shadow-lg">{banner.title}</h2>*/}
+                            {/*            <p className="text-xl mb-6 drop-shadow-lg">{banner.description}</p>*/}
+                            {/*        </div>*/}
+                            {/*    </div>*/}
+                            {/*</div>*/}
                         </div>
                     )}
                 </div>

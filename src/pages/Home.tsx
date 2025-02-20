@@ -1,5 +1,6 @@
 import React from "react";
 import ImageBanner from "../components/ImageBanner.tsx";
+import Suppliers from "../components/Suppliers.tsx";
 
 export default function Home(){
     return (
@@ -8,6 +9,7 @@ export default function Home(){
                 <ImageBanner />
                 {/* Rest of your home page content */}
             {/*</div>*/}
+            <Suppliers />
         </React.Fragment>
     );
 };
