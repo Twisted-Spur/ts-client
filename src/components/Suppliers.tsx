@@ -26,6 +26,12 @@ const suppliers: Supplier[] = [
         logoUrl: "/suppliers/jerzees-logo.png",
         website: "https://www.jerzees.com/s/?language=en_US"
     },
+    {
+        id: 4,
+        name: "Bella+Canvas",
+        logoUrl: "/suppliers/bella-canvas-logo.png",
+        website: "https://www.bellacanvas.com/"
+    }
 ];
 
 const Suppliers: React.FC = () => {
