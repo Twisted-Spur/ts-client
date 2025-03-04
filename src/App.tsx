@@ -7,6 +7,7 @@ import Home from "./pages/Home.tsx";
 import Header from "./components/Header.tsx";
 import NavBar from "./components/NavBar.tsx";
 import Footer from "./components/Footer.tsx";
+import ShirtEditor from "./pages/ShirtEditor.tsx";
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
                 <Route path="/sign-up" element={<SignUp />} />
                 <Route path="/contact-us" element={<ContactUs />} />
                 <Route path="/about-us" element={<AboutUs />} />
+                <Route path="/category/custom-shirts" element={<ShirtEditor />} />
             </Routes>
             <Footer />
         </BrowserRouter>

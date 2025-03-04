@@ -5,10 +5,7 @@ import Suppliers from "../components/Suppliers.tsx";
 export default function Home(){
     return (
         <React.Fragment>
-            {/*<div className="min-h-screen">*/}
-                <ImageBanner />
-                {/* Rest of your home page content */}
-            {/*</div>*/}
+            <ImageBanner />
             <Suppliers />
         </React.Fragment>
     );
