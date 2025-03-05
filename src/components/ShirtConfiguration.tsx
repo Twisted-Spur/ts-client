@@ -1,12 +1,24 @@
 import {ProductDto} from "../dtos/ProductDto.ts";
-import PropTypes from "prop-types";
+import {SupplierDto} from "../dtos/SupplierDto.ts";
 
-// interface ShirtSelectionsProps {
-//     products: ProductDto[];
-//     selectedProduct: ProductDto;
-//     setSelectedProduct: (product: ProductDto) => void;
-    // shirtType: string;
-    // setShirtType: (type: string) => void;
+interface ShirtConfigurationProps {
+    products: ProductDto[];
+    productsIsLoading: boolean;
+    selectedProductId: number;
+    setSelectedProductId: (productId: number) => void;
+
+    shirtSuppliers: SupplierDto[];
+    suppliersIsLoading: boolean;
+    selectedShirtSupplierId: number;
+    setSelectedShirtSupplierId: (supplierId: number) => void;
+
+    quantity: number;
+    setQuantity: (quantity: number) => void;
+
+    unitPrice: number;
+    setUnitPrice: (unitPrice: number) => void;
+    totalPrice: number;
+
     // shirtSize: string;
     // setShirtSize: (size: string) => void;
     // color: string;
@@ -14,21 +26,30 @@ import PropTypes from "prop-types";
     // prints: Print[];
     // addPrint: (print: Print) => void;
     // removePrint: (printId: string) => void;
-    // shirtBrand: string;
-    // setShirtBrand: (brand: string) => void;
     // quantity: number;
     // setQuantity: (quantity: number) => void;
     // unitPrice: number;
     // setUnitPrice: (price: number) => void;
     // totalPrice: number;
-// }
+}
 
 export default function ShirtConfiguration({
     products,
-    selectedProduct,
-    setSelectedProduct
-                                             // shirtType,
-                                             // setShirtType,
+    productsIsLoading,
+    selectedProductId,
+    setSelectedProductId,
+
+    shirtSuppliers,
+    suppliersIsLoading,
+    selectedShirtSupplierId,
+    setSelectedShirtSupplierId,
+
+    quantity,
+    setQuantity,
+
+    unitPrice,
+    setUnitPrice,
+    totalPrice
                                              // shirtSize,
                                              // setShirtSize,
                                              // color,
@@ -36,22 +57,9 @@ export default function ShirtConfiguration({
                                              // prints,
                                              // addPrint,
                                              // removePrint,
-                                             // shirtBrand,
-                                             // setShirtBrand,
-                                             // quantity,
-                                             // setQuantity,
-                                             // unitPrice,
-                                             // setUnitPrice,
-                                             // totalPrice,
-                                         }) {
-    // const { products } = useQuery('products', fetchProducts);
-    // const [shirtType, setShirtType] = useState(shirtType);
+                                         }: ShirtConfigurationProps) {
     // const [shirtSize, setShirtSize] = useState(shirtSize);
-    // const [shirtBrand, setShirtBrand] = useState(shirtBrand);
     // const [shirtColor, setShirtColor] = useState(shirtColor);
-    // const [quantity, setQuantity] = useState(0);
-    // const [unitPrice, setUnitPrice] = useState(0);
-    // const [totalPrice, setTotalPrice] = useState(0);
     // const [prints, setPrints] = useState<Print[]>([]);
 
     // const handleAddPrint = () => {
@@ -67,19 +75,37 @@ export default function ShirtConfiguration({
     //     }
     // };
 
+    // TODO - probably all pre-fetch data needs OR'd here
+    if (productsIsLoading || suppliersIsLoading) {
+        return <span>Loading...</span>;
+    }
+
     return (
         <div className="space-y-6 p-4 bg-white rounded shadow">
+            {/* Shirt Suppliers */}
+            <div>
+                <label className="block text-sm font-medium">Shirt Brand</label>
+                <select
+                    defaultValue={selectedShirtSupplierId}
+                    onChange={(e) => (setSelectedShirtSupplierId(Number(e.target.value)))}
+                    className="mt-1 p-1 block w-full border-gray-600 rounded-md shadow-sm bg-gray-300"
+                >
+                    {shirtSuppliers.map((shirtSupplier: SupplierDto) => (
+                        <option key={shirtSupplier.id} value={shirtSupplier.id}>
+                            {shirtSupplier.supplierName}
+                        </option>
+                    ))}
+                </select>
+            </div>
+
             {/* Shirt Type */}
             <div>
                 <label className="block text-sm font-medium">Shirt Type</label>
                 <select
-                    value={selectedProduct}
-                    onChange={(e) => (setSelectedProduct(e.target.value))}
-                    className="mt-1 block w-full border-gray-600 rounded-md shadow-sm"
+                    defaultValue={selectedProductId}
+                    onChange={(e) => (setSelectedProductId(Number(e.target.value)))}
+                    className="mt-1 p-1 block w-full border-gray-600 rounded-md shadow-sm bg-gray-300"
                 >
-                    {/*<option value="T-Shirt">T-Shirt</option>*/}
-                    {/*<option value="Polo">Polo</option>*/}
-                    {/*<option value="Hoodie">Hoodie</option>*/}
                     {products.map((product: ProductDto) => (
                         <option key={product.id} value={product.id}>
                             {product.name}
@@ -160,49 +186,34 @@ export default function ShirtConfiguration({
         {/*        </div>*/}
         {/*    </div>*/}
 
-        {/*    /!* Shirt Brand *!/*/}
-        {/*    <div>*/}
-        {/*        <label className="block text-sm font-medium">Shirt Brand</label>*/}
-        {/*        <input*/}
-        {/*            type="text"*/}
-        {/*            value={shirtBrand}*/}
-        {/*            onChange={(e) => setShirtBrand(e.target.value)}*/}
-        {/*            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"*/}
-        {/*        />*/}
-        {/*    </div>*/}
+            {/* Quantity */}
+            <div>
+                <label className="block text-sm font-medium">Quantity</label>
+                <input
+                    type="number"
+                    min="1"
+                    value={quantity}
+                    onChange={(e) => setQuantity(parseInt(e.target.value))}
+                    className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+                />
+            </div>
 
-        {/*    /!* Quantity *!/*/}
-        {/*    <div>*/}
-        {/*        <label className="block text-sm font-medium">Quantity</label>*/}
-        {/*        <input*/}
-        {/*            type="number"*/}
-        {/*            min="1"*/}
-        {/*            value={quantity}*/}
-        {/*            onChange={(e) => setQuantity(parseInt(e.target.value))}*/}
-        {/*            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"*/}
-        {/*        />*/}
-        {/*    </div>*/}
-
-        {/*    /!* Pricing *!/*/}
-        {/*    <div>*/}
-        {/*        <label className="block text-sm font-medium">Price per Shirt ($)</label>*/}
-        {/*        <input*/}
-        {/*            type="number"*/}
-        {/*            min="0"*/}
-        {/*            value={unitPrice}*/}
-        {/*            onChange={(e) => setUnitPrice(parseFloat(e.target.value))}*/}
-        {/*            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"*/}
-        {/*        />*/}
-        {/*    </div>*/}
-        {/*    <div>*/}
-        {/*        <p className="text-lg font-bold">*/}
-        {/*            Total Price: ${totalPrice.toFixed(2)}*/}
-        {/*        </p>*/}
-        {/*    </div>*/}
+            {/* Pricing */}
+            <div>
+                <label className="block text-sm font-medium">Price per Shirt ($)</label>
+                <input
+                    type="number"
+                    min="0"
+                    value={unitPrice}
+                    onChange={(e) => setUnitPrice(parseFloat(e.target.value))}
+                    className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+                />
+            </div>
+            <div>
+                <p className="text-lg font-bold">
+                    Total Price: ${totalPrice.toFixed(2)}
+                </p>
+            </div>
         </div>
     );
 };
-
-ShirtConfiguration.propTypes = {
-    products: PropTypes.array
-}
